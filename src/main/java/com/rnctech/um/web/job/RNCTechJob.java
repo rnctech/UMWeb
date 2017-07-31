@@ -31,10 +31,10 @@ public abstract class RNCTechJob implements InterruptableJob {
 
 	public static Logger logger = Logger.getLogger(RNCTechJob.class);
 
-	public abstract FactoryBean<? extends Trigger> adapterJobTrigger(
+	public abstract FactoryBean<? extends Trigger> umJobTrigger(
 			JobDetail jobDetail);
 
-	public abstract JobDetailFactoryBean getAdapterJob(UMJobData config);
+	public abstract JobDetailFactoryBean getUMJob(UMJobData config);
 
 	@Override
 	public void execute(JobExecutionContext jobExecutionContext)
@@ -49,11 +49,11 @@ public abstract class RNCTechJob implements InterruptableJob {
 	}
 
 	public String getJobKeyName(UMJobData config) {
-		return config.getCommand().getTenantName() + "_AdapterJob";
+		return config.getCommand().getName() + "_UMJob";
 	}
 
 	public static String getTriggerKeyName(Class clz) {
-		return clz.getName() + "_AdapterTrigger";
+		return clz.getName() + "_UMTrigger";
 	}
 
 	public JobDataMap buildJobMap(UMJobData config) {

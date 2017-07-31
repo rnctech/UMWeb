@@ -28,13 +28,13 @@ public class UMWebLoggingAspect {
 
 	@Before("controller()")
 	public void logBeforeController(JoinPoint joinPoint) {
-		logger.debug("Adapter api: Begin call to " + joinPoint.getThis().getClass()+"."+joinPoint.getSignature().getName() + " by "
+		logger.debug("UM api: Begin call to " + joinPoint.getThis().getClass()+"."+joinPoint.getSignature().getName() + " by "
 				+ getAuthenticatedUserName() + " with tenant " + getTenantName());
 	}
 
 	@After("controller()")
 	public void logAfterController(JoinPoint joinPoint) {
-		logger.debug("Adapter api: End call to " + joinPoint.getThis().getClass()+"."+joinPoint.getSignature().getName() + " by "
+		logger.debug("UM api: End call to " + joinPoint.getThis().getClass()+"."+joinPoint.getSignature().getName() + " by "
 				+ getAuthenticatedUserName() + " with tenant " + getTenantName());
 	}
 

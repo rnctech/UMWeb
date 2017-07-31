@@ -26,7 +26,7 @@ public class UMWebSecurityConfig extends WebSecurityConfigurerAdapter {
         auth.authenticationProvider(authProvider);
     }
     
-/*    @Override
+    @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
             .authorizeRequests()
@@ -39,14 +39,14 @@ public class UMWebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
             .logout()
                 .permitAll();
-    }*/
+    }
     
-    @Override
+/*    @Override
 	protected void configure(HttpSecurity http) throws Exception {
 
 		http.csrf().disable();
         http.authorizeRequests().anyRequest().permitAll();
-	}
+	}*/
 	
 	@Configuration
 	protected static class AuthenticationConfiguration extends

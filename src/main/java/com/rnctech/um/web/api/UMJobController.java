@@ -47,39 +47,39 @@ public class UMJobController {
 	@Autowired
 	private Environment env;
 
-	@RequestMapping(value = "/extract/{tenantName}", method = RequestMethod.POST)
+	@RequestMapping(value = "/run/{name}", method = RequestMethod.POST)
 	@ResponseBody
-	public ResponseEntity<String> extract(@PathVariable("tenantName") String tenantName,
+	public ResponseEntity<String> extract(@PathVariable("name") String name,
 			@RequestBody UMJobData jobdata , HttpServletRequest request,
 			HttpServletResponse response) {
 		
-		String runIdentifier = UMWebUtils.getRunID(tenantName);
+		String runIdentifier = UMWebUtils.getRunID(name);
 		jobdata.setJobkey(runIdentifier);
-		jobservice.scheduleAdapterJob(jobdata);			
+		jobservice.scheduleUMJob(jobdata);			
 		return new ResponseEntity<String>(runIdentifier, HttpStatus.OK);
 	}
 
 
-	@RequestMapping(value = "/status/exec", method = RequestMethod.GET)
+	@RequestMapping(value = "/run/status", method = RequestMethod.GET)
 	@ResponseBody
 	public ResponseEntity<?> getJobStatus(HttpServletRequest request, HttpServletResponse response) {		
 		String execjobs = jobservice.getExecutingJobs();		
 		return new ResponseEntity<String>(execjobs, HttpStatus.OK);
 	}
 	
-	@RequestMapping(value = "/status/{tenantName}", method = RequestMethod.GET)
+	@RequestMapping(value = "/run/status/{name}", method = RequestMethod.GET)
 	@ResponseBody
-	public ResponseEntity<?> getJobHistory(@PathVariable("tenantName") String tenantName, HttpServletRequest request, HttpServletResponse response) {		
-		String execjobs = jobservice.getJobHistory(tenantName);		
+	public ResponseEntity<?> getJobHistory(@PathVariable("name") String name, HttpServletRequest request, HttpServletResponse response) {		
+		String execjobs = jobservice.getJobHistory(name);		
 		return new ResponseEntity<String>(execjobs, HttpStatus.OK);
 	}
 	
-	@RequestMapping(value="cancel/{tenantName}")
+	@RequestMapping(value="cancel/{name}")
 	@ResponseBody
-	public ResponseEntity<?> cancel(@PathVariable("tenantName") String tenantName, HttpServletRequest request,
+	public ResponseEntity<?> cancel(@PathVariable("name") String name, HttpServletRequest request,
 			HttpServletResponse response) {
-		String ret = "Try to cancel job "+tenantName;
-		ret = jobservice.cancelAdapterJob(tenantName);
+		String ret = "Try to cancel job "+name;
+		ret = jobservice.cancelumJob(name);
 
 		return new ResponseEntity<String>(ret, HttpStatus.OK);
 	}

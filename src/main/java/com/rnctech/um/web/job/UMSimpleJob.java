@@ -40,14 +40,14 @@ public class UMSimpleJob extends RNCTechJob {
 		RunJobMain(args);		
 	}
 
-	public SimpleTriggerFactoryBean adapterJobTrigger(JobDetail jobDetail) {
+	public SimpleTriggerFactoryBean umJobTrigger(JobDetail jobDetail) {
 		SimpleTriggerFactoryBean stfb = UMWebQuartzConfig.createTrigger(jobDetail, frequency);
 		stfb.setBeanName(getTriggerKeyName(UMSimpleJob.class.getClass()));
 		stfb.afterPropertiesSet();
 		return stfb;
 	}
 	
-	public JobDetailFactoryBean getAdapterJob(UMJobData config) {
+	public JobDetailFactoryBean getUMJob(UMJobData config) {
 		JobDetailFactoryBean jBean = UMWebQuartzConfig.createJobDetail(this.getClass());
 		jBean.setBeanName(config.getJobkey());
 		JobDataMap jobMap = buildJobMap(config);

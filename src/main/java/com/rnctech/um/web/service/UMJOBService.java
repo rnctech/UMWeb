@@ -37,16 +37,16 @@ public class UMJOBService {
 	@Value("${quartz.enabled}")
 	boolean isSchedule;
 	
-	@Value("${com.ldb.adapter.schedule.type}")
+	@Value("${com.ldb.um.schedule.type}")
 	String scheduleType;
 	
-	@Value("${com.ldb.adapter.exec.type}")
+	@Value("${com.ldb.um.exec.type}")
 	String execType;
 	
-	@Value("${com.ldb.adapter.cron.jobtrigger}")
+	@Value("${com.ldb.um.cron.jobtrigger}")
 	private long frequency;
 	
-	@Value("${com.ldb.adapter.cron.jobexpression}")
+	@Value("${com.ldb.um.cron.jobexpression}")
     private String jobexpr;
 	
 	@Autowired
@@ -59,27 +59,27 @@ public class UMJOBService {
 	private SchedulerFactoryBean schedFactory;*/
 	
 	
-	public String scheduleAdapterJob(UMJobData jobdata){
+	public String scheduleUMJob(UMJobData jobdata){
 		String scheduled = "Job is Scheduled!!";
 		try {
-			tmap.put(jobdata.getCommand().getTenantName(), jobdata);
+			tmap.put(jobdata.getCommand().getName(), jobdata);
 			if(execType.equals("standalone")){
 				logger.info("run as "+ execType +" start @ "+new Date());
 				boolean waitProcessDone = true;
 				Object ret = UMShellScriptUtils.executeJava(jobdata, waitProcessDone, logger);
 				if(waitProcessDone && ret instanceof String){
-					tmap.remove(jobdata.getCommand().getTenantName());
+					tmap.remove(jobdata.getCommand().getName());
 					scheduled = (String)ret;
 				}else{
 					Process p = (Process)ret;					
-					tp.put(jobdata.getCommand().getTenantName(), p);
+					tp.put(jobdata.getCommand().getName(), p);
 					scheduled = "Job "+jobdata.getJobkey()+" kicked off.";
 					try {
 						UMProcessExitDetector processExitDetector = new UMProcessExitDetector(p);
 						processExitDetector.addProcessListener(new UMProcessExitDetector.ProcessListener() {
 						    public void processFinished(Process process) {
 						    	logger.info("The subprocess"+p+" has finished.");
-						        tmap.remove(jobdata.getCommand().getTenantName());
+						        tmap.remove(jobdata.getCommand().getName());
 						    }
 						});
 						processExitDetector.start();
@@ -95,16 +95,16 @@ public class UMJOBService {
 					ajob = new UMSimpleJob(frequency);
 				}
 				if(isSchedule){
-					JobDetail jd = ajob.getAdapterJob(jobdata).getObject();
+					JobDetail jd = ajob.getUMJob(jobdata).getObject();
 					logger.info("ready for job "+jobdata.getJobkey()+" as detail "+jd+" for type "+scheduleType);
-					Trigger t = ajob.adapterJobTrigger(jd).getObject();
+					Trigger t = ajob.umJobTrigger(jd).getObject();
 					logger.info("Trigger as "+t+" start @ "+t.getStartTime());
 					SchedulerFactoryBean schedFactory = appContext.getBean(SchedulerFactoryBean.class);
 					schedFactory.getScheduler().scheduleJob(jd, t);
 				}else{
 					logger.info("job run start @ "+new Date());
 					scheduled = ajob.executeNow(jobdata);
-					tmap.remove(jobdata.getCommand().getTenantName());
+					tmap.remove(jobdata.getCommand().getName());
 				}
 			}			
 		} catch (Exception e) {
@@ -146,7 +146,7 @@ public class UMJOBService {
 	}
 
     //need Ingestion API to cancel job elengently instead of kill the process
-	public String cancelAdapterJob(String tenant) {
+	public String cancelumJob(String tenant) {
 		StringBuilder ret = new StringBuilder("Ready to cancel job ");
 		UMJobData jobdata = tmap.get(tenant);
 		if(null != jobdata){

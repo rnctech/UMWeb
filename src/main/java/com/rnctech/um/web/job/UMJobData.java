@@ -8,13 +8,10 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @JsonIgnoreProperties({"UMSession","description","jobkey"})
 public class UMJobData {
 
-	String mrurl = null;
 	String user = null;
 	String password = null;
 	JobData command = null;
 	Long jobid = -1l;
-	Boolean allowssl = false;
-	String kafkabrokers = null;
 	@JsonIgnore String description;
 	@JsonIgnore String jobkey;
 	@JsonIgnore long UMSession = 0l;
@@ -43,25 +40,6 @@ public class UMJobData {
 	public void setJobid(Long jobid) {
 		this.jobid = jobid;
 	}
-	public Boolean getAllowssl() {
-		return allowssl;
-	}
-	public void setAllowssl(Boolean allowssl) {
-		this.allowssl = allowssl;
-	}
-	public String getKafkabrokers() {
-		return kafkabrokers;
-	}
-	public void setKafkabrokers(String kafkabrokers) {
-		this.kafkabrokers = kafkabrokers;
-	}
-	public String getMrurl() {
-		return mrurl;
-	}
-	public void setMrurl(String mrurl) {
-		this.mrurl = mrurl;
-	}
-
 	public long getUMSession() {
 		return UMSession;
 	}
@@ -83,51 +61,22 @@ public class UMJobData {
 	}
 	
 	public class JobData {
-		String tenantName = null;
-		String sourceSystemName = null;
-		String sourceSystemInstanceName = null;
-		String entityCategory = null;
+		String name = null;
 		String jobName = null;
-		String loadType = "INCREMENTAL";
-		String jobType = "ETL";
+		String jobType = "MAIN";
 		Long parentJobId = null;
-		Long externalParentJobId = null;
 		Map<String, String> jobProperties = null;
-		public String getTenantName() {
-			return tenantName;
+		public String getName() {
+			return name;
 		}
-		public void setTenantName(String tenantName) {
-			this.tenantName = tenantName;
-		}
-		public String getSourceSystemName() {
-			return sourceSystemName;
-		}
-		public void setSourceSystemName(String sourceSystemName) {
-			this.sourceSystemName = sourceSystemName;
-		}
-		public String getSourceSystemInstanceName() {
-			return sourceSystemInstanceName;
-		}
-		public void setSourceSystemInstanceName(String sourceSystemInstanceName) {
-			this.sourceSystemInstanceName = sourceSystemInstanceName;
-		}
-		public String getEntityCategory() {
-			return entityCategory;
-		}
-		public void setEntityCategory(String entityCategory) {
-			this.entityCategory = entityCategory;
+		public void setName(String tenantName) {
+			this.name = tenantName;
 		}
 		public String getJobName() {
 			return jobName;
 		}
 		public void setJobName(String jobName) {
 			this.jobName = jobName;
-		}
-		public String getLoadType() {
-			return loadType;
-		}
-		public void setLoadType(String loadType) {
-			this.loadType = loadType;
 		}
 		public String getJobType() {
 			return jobType;
@@ -140,12 +89,6 @@ public class UMJobData {
 		}
 		public void setParentJobId(Long parentJobId) {
 			this.parentJobId = parentJobId;
-		}
-		public Long getExternalParentJobId() {
-			return externalParentJobId;
-		}
-		public void setExternalParentJobId(Long externalParentJobId) {
-			this.externalParentJobId = externalParentJobId;
 		}
 		public Map<String, String> getJobProperties() {
 			return jobProperties;

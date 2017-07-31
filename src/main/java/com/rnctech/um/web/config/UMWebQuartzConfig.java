@@ -93,7 +93,7 @@ public class UMWebQuartzConfig {
 	// Use this method for creating cron triggers instead of simple triggers:
 	public static CronTriggerFactoryBean createCronTrigger(JobDetail jobDetail,
 			String cronExpression) {
-		AdapterCronTriggerFactoryBean factoryBean = new AdapterCronTriggerFactoryBean();
+		UMCronTriggerFactoryBean factoryBean = new UMCronTriggerFactoryBean();
 		factoryBean.setJobDetail(jobDetail);
 		factoryBean.setCronExpression(cronExpression);		
         factoryBean.setName("cron-trigger"+System.currentTimeMillis());
@@ -114,12 +114,12 @@ public class UMWebQuartzConfig {
 		factoryBean.setJobClass(jobClass);
 		// job has to be durable to be stored in DB:
 		factoryBean.setDurability(true);
-        factoryBean.setName("adapter-job"+System.currentTimeMillis());
+        factoryBean.setName("um-job"+System.currentTimeMillis());
 		factoryBean.afterPropertiesSet();
 		return factoryBean;
 	}
 	
-/*	public static class AdapterSimpleTriggerFactoryBean extends SimpleTriggerFactoryBean {
+/*	public static class UMSimpleTriggerFactoryBean extends SimpleTriggerFactoryBean {
 
 		@Override
 		public void afterPropertiesSet() {
@@ -129,7 +129,7 @@ public class UMWebQuartzConfig {
 		}
 	}*/
 
-	public static class AdapterCronTriggerFactoryBean extends CronTriggerFactoryBean {
+	public static class UMCronTriggerFactoryBean extends CronTriggerFactoryBean {
 	    private Date endTime;
 	    public void setEndTime(Date endTime) {
 	        this.endTime = endTime;

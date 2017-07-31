@@ -12,7 +12,7 @@ ENV JAVA_HOME=/usr/java/jdk1.8.0_131
 ENV PATH=$PATH:$JAVA_HOME/bin
 RUN alias ll='ls -l --color=auto'
 
-ADD pulladapterjob.sh /tmp/
+ADD runjob.sh /tmp/
 ADD simplejob.sh /tmp/
 RUN chmod +x /tmp/*.sh
 ADD rnctechentrypoint.sh /usr/local/bin/rnctechentrypoint.sh

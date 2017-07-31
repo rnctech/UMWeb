@@ -51,16 +51,7 @@ public class LdapTest extends UMWebTest{
         ctxSrc.afterPropertiesSet(); 
         return ctxSrc;
     }
-    
-    public static LdapContextSource getNumerifyLdapContext(){
-        LdapContextSource ctxSrc = new LdapContextSource();
-        ctxSrc.setUrl("ldap://10.0.1.83:10389");
-        ctxSrc.setBase("dc=ldb,dc=com");
-        ctxSrc.setUserDn("uid=admin,ou=system");
-        ctxSrc.setPassword("T3ndulkar");        
-        ctxSrc.afterPropertiesSet(); 
-        return ctxSrc;
-    }  
+   
     
     public static LdapTemplate getTemplate(){
     	LdapContextSource ctxSrc = getLocalLdapContext(); 

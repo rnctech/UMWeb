@@ -19,7 +19,10 @@ import org.apache.log4j.Logger;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.rnctech.um.web.job.UMJobData;
-
+/**
+ * @contributor zilin
+ * 
+ */
 public class UMShellScriptUtils {
 
 	public static final String UMWEB_JOB_CMD = "command";
@@ -66,9 +69,9 @@ public class UMShellScriptUtils {
 	    ArrayList<String> cmd = new ArrayList<String>();
 	    cmd.add("java");
 	    cmd.add("-cp");
-	    cmd.add("httpcore-4.4.4.jar:httpclient-4.4.1.jar:guava-20.0.jar:log4j-1.2.17.jar:org.apache.commons.codec-1.3.0.jar:cxf-bundle-2.7.5.jar:javax.ws.rs-api-2.0.1.jar:javax.ws.rs-api-2.0-m10.jar:neethi-3.0.2.jar:httpcore-nio-4.2.2.jar:httpasyncclient-4.0-beta3.jar:wsdl4j-1.6.3.jar:commons-io-2.4.jar");
+	    cmd.add("httpcore-4.4.4.jar:httpclient-4.4.1.jar:guava-20.0.jar:log4j-1.2.17.jar");
 	    cmd.add("-Dlog4j.configuration=file:log4j.properties");
-	    cmd.add("com.rnctech.platform.TestMain");
+	    cmd.add("com.rnctech.cd.TestMain");
 	    cmd.addAll(buildArgsList(config, logger));
 	    logger.info("build java command to run as:\n"+UMWebUtils.aTos(cmd.toArray(new String[cmd.size()])));
 	    ProcessBuilder pb = new ProcessBuilder(cmd.toArray(new String[cmd.size()]));	
@@ -136,25 +139,4 @@ public class UMShellScriptUtils {
         fr.close();
     }
 
-/*    public static void main(String [] args) throws IOException {        
-        String[] command = {"CMD", "/C", "java -cp httpcore-4.4.4.jar:httpclient-4.4.1.jar:guava-20.0.jar:log4j-1.2.17.jar:org.apache.commons.codec-1.3.0.jar:cxf-bundle-2.7.5.jar:javax.ws.rs-api-2.0.1.jar:javax.ws.rs-api-2.0-m10.jar:neethi-3.0.2.jar:httpcore-nio-4.2.2.jar:httpasyncclient-4.0-beta3.jar:wsdl4j-1.6.3.jar:commons-io-2.4.jar -Dlog4j.configuration=file:log4j.properties com.rnctech.platform.TestMain --url http://192.168.211.1:8080/UMWeb/ --user useradmin@rnctech.com --password Admin123 --command \"{\"tenantName\":\"test\",\"sourceSystemName\":null,\"sourceSystemInstanceName\":null,\"entityCategory\":\"cs_servicenow_tenant_ec\",\"jobName\":\"myjob\",\"externalParentJobId\":0,\"jobType\":\"ETL\",\"loadType\":\"FULL\",\"jobProperties\":{}}\""};
-        ProcessBuilder probuilder = new ProcessBuilder( command );
-        probuilder.directory(new File("c:\\tmp"));        
-        Process process = probuilder.start();
-        InputStream is = process.getInputStream();
-        InputStreamReader isr = new InputStreamReader(is);
-        BufferedReader br = new BufferedReader(isr);
-        String line;
-        System.out.printf("Output of running %s is:\n",
-                Arrays.toString(command));
-        while ((line = br.readLine()) != null) {
-            System.out.println(line);
-        }
-        try {
-            int exitValue = process.waitFor();
-            System.out.println("\n\nExit Value is " + exitValue);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-    }*/
 }

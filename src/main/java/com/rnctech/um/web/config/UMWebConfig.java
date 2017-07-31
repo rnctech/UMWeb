@@ -20,7 +20,7 @@ import org.springframework.core.env.Environment;
 @EnableAspectJAutoProxy
 public class UMWebConfig {
 
-	@Value("${com.ldb.adapter.exec.type}")
+	@Value("${com.ldb.um.exec.type}")
 	private String execType;
 
 	@Autowired

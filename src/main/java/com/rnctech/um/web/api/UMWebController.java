@@ -35,7 +35,7 @@ public class UMWebController {
 
 	@RequestMapping("/ping")
 	public String ping() {
-		return "Ping AdapterWeb successed!";
+		return "Ping UMWeb successed!";
 	}
 
 	@RequestMapping("/role")	
@@ -59,7 +59,7 @@ public class UMWebController {
 
 		try {
 			String filename = uploadfile.getOriginalFilename();
-			String directory = env.getProperty("adapter.upload.folder");
+			String directory = env.getProperty("um.upload.folder");
 			String filepath = Paths.get(directory, filename).toString();
 			File basefolder = new File(directory);
 			if(!basefolder.exists())

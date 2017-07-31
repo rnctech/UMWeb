@@ -42,7 +42,7 @@ public class UMCronJob extends RNCTechJob {
 		logger.info("Running "+this.getClass().getName());
 	}
 
-	public CronTriggerFactoryBean adapterJobTrigger(JobDetail jobDetail) {
+	public CronTriggerFactoryBean umJobTrigger(JobDetail jobDetail) {
 		CronTriggerFactoryBean ctfb = UMWebQuartzConfig.createCronTrigger(jobDetail,jobexpr);
 		ctfb.setBeanName(getTriggerKeyName(UMSimpleJob.class.getClass()));
 		try {
@@ -52,7 +52,7 @@ public class UMCronJob extends RNCTechJob {
 		return ctfb;
     }
 
-	public JobDetailFactoryBean getAdapterJob(UMJobData config) {
+	public JobDetailFactoryBean getUMJob(UMJobData config) {
 		JobDetailFactoryBean jBean = UMWebQuartzConfig.createJobDetail(this.getClass());
 		jBean.setBeanName(config.getJobkey());
 		JobDataMap jobMap = buildJobMap(config);

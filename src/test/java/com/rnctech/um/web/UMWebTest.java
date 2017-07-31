@@ -42,7 +42,7 @@ public class UMWebTest extends AbstractTestExecutionListener {
 				.singletonList(new SimpleGrantedAuthority("role_ldbadmin"));
 
 		Authentication testingAuthenticationToken = new UsernamePasswordAuthenticationToken(
-				"ldbadmin", "Numerify123", authorities);
+				"admin", "Admin123", authorities);
 
 		SecurityContext securityContext = new SecurityContextImpl();
 		securityContext.setAuthentication(testingAuthenticationToken);
