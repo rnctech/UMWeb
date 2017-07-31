@@ -1,0 +1,115 @@
+dn: ou=groups,dc=rnctech,dc=com
+objectclass: top
+objectclass: organizationalUnit
+ou: groups
+
+dn: ou=subgroups,ou=groups,dc=rnctech,dc=com
+objectclass: top
+objectclass: organizationalUnit
+ou: subgroups
+
+dn: ou=supergroup,dc=rnctech,dc=com
+objectclass: top
+objectclass: organizationalUnit
+ou: supergroup
+
+dn: ou=admingroup,dc=rnctech,dc=com
+objectclass: top
+objectclass: organizationalUnit
+ou: admingroup
+
+dn: ou=people,dc=rnctech,dc=com
+objectclass: top
+objectclass: organizationalUnit
+ou: people
+
+dn: uid=ben,ou=people,dc=rnctech,dc=com
+objectclass: top
+objectclass: person
+objectclass: organizationalPerson
+objectclass: inetOrgPerson
+cn: Ben Alex
+sn: Alex
+uid: ben
+userPassword: {SHA}nFCebWjxfaLbHHG1Qk5UU4trbvQ=
+
+dn: uid=zilin,ou=people,dc=rnctech,dc=com
+objectclass: top
+objectclass: person
+objectclass: organizationalPerson
+objectclass: inetOrgPerson
+cn: Zilin Chen
+sn: Chen
+uid: zilin
+userPassword: Admin123
+
+dn: uid=dbadmin,ou=people,dc=rnctech,dc=com
+objectclass: top
+objectclass: person
+objectclass: organizationalPerson
+objectclass: inetOrgPerson
+cn: Admin Mdac
+sn: Mdac
+uid: dbadmin
+userPassword: dbadmin123
+
+dn: uid=devops,ou=people,dc=rnctech,dc=com
+objectclass: top
+objectclass: person
+objectclass: organizationalPerson
+objectclass: inetOrgPerson
+cn: Admin Noc
+sn: Noc
+uid: devops
+userPassword: devops123
+
+dn: uid=useradmin,ou=people,dc=rnctech,dc=com
+objectclass: top
+objectclass: person
+objectclass: organizationalPerson
+objectclass: inetOrgPerson
+cn: Admin Tenant
+sn: Tenant
+uid: useradmin
+userPassword: useradmin123
+
+dn: uid=alan,ou=people,dc=rnctech,dc=com
+objectclass: top
+objectclass: person
+objectclass: organizationalPerson
+objectclass: inetOrgPerson
+cn: Alan Chen
+sn: Chen
+uid: alan
+userPassword: Admin123
+
+dn: uid=netfixtest,ou=people,dc=rnctech,dc=com
+objectclass: top
+objectclass: person
+objectclass: organizationalPerson
+objectclass: inetOrgPerson
+cn: Netfix_User1
+sn: Netfix
+uid: netfixtest
+email: user1@netfix.com
+phone: 4088888888
+company: Netfix
+userPassword: Admin123
+
+dn: cn=superadmins,ou=groups,dc=rnctech,dc=com
+objectclass: top
+objectclass: groupOfNames
+cn: superadmins
+ou: superadmin
+uniqueMember: uid=ben,ou=people,dc=rnctech,dc=com
+uniqueMember: uid=zilin,ou=people,dc=rnctech,dc=com
+
+dn: cn=admins,ou=groups,dc=rnctech,dc=com
+objectclass: top
+objectclass: groupOfNames
+cn: admins
+ou: admin
+uniqueMember: uid=dbadmin,ou=people,dc=rnctech,dc=com
+uniqueMember: uid=devops,ou=people,dc=rnctech,dc=com
+uniqueMember: uid=useradmin,ou=people,dc=rnctech,dc=com
+uniqueMember: uid=zilin,ou=people,dc=rnctech,dc=com

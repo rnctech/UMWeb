@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE log4j:configuration SYSTEM "http://logging.apache.org/log4j/1.2/apidocs/org/apache/log4j/xml/doc-files/log4j.dtd">
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/"
+	debug="false">
+
+	<!-- APPENDER: console -->
+	<appender name="consoleAppender" class="org.apache.log4j.ConsoleAppender">
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d{ISO8601} | %p | %c{40} | %t | %m%n" />
+		</layout>
+	</appender>
+
+	<!-- APPENDER: spring log appender -->
+	<appender name="umwebSpringLogFileAppender" class="org.apache.log4j.RollingFileAppender">
+		<param name="File" value="/var/log/umweb-spring-logs.log" />
+		<param name="MaxFileSize" value="10MB" />
+		<param name="MaxBackupIndex" value="10" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d{ISO8601} | %p | %c{40} | %t | %m%n" />
+		</layout>
+	</appender>
+
+	<appender name="umwebLogFileAppender" class="org.apache.log4j.RollingFileAppender">
+		<param name="File" value="/var/log/umweb-logs.log" />
+		<param name="MaxFileSize" value="10MB" />
+		<param name="MaxBackupIndex" value="10" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d{ISO8601} | %p | %c{40} | %t | %m%n" />
+		</layout>
+	</appender>
+
+	<logger name="org.springframework">
+		<level value="INFO" />
+		<appender-ref ref="umwebSpringLogFileAppender" />
+	</logger>
+
+	<!-- ADMIN APPLICATION LOGGER -->
+	<logger name="com.rnctech.um.web">
+		<level value="INFO" />
+		<appender-ref ref="umwebLogFileAppender" />
+	</logger>
+
+	<root>
+		<level value="INFO" />
+		<appender-ref ref="consoleAppender" />
+	</root>
+
+</log4j:configuration>
