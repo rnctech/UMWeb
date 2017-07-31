@@ -7,7 +7,7 @@
           <Pattern>[%p] %c - %m%n</Pattern>
       </encoder>
     </appender>
-    <logger name="com.rnctech.um.web" level="INFO"/>
+    <logger name="com.rnctech.umweb" level="INFO"/>
     <logger name="org.springframework" level="OFF"/>
     <logger name="org.apache.catalina.startup.DigesterFactory" level="OFF"/>
     <root level="WARN">

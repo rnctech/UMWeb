@@ -35,7 +35,7 @@
 	</logger>
 
 	<!-- ADMIN APPLICATION LOGGER -->
-	<logger name="com.rnctech.um.web">
+	<logger name="com.rnctech.umweb">
 		<level value="INFO" />
 		<appender-ref ref="umwebLogFileAppender" />
 	</logger>

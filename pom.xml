@@ -19,7 +19,7 @@
 		<quartz.version>2.2.3</quartz.version>
 		<mysql.version>5.1.38</mysql.version>
 		<commons-dbcp.version>1.4</commons-dbcp.version>
-		<start-class>com.rnctech.um.web.UMWebApplication</start-class>
+		<start-class>com.rnctech.umweb.UMWebApplication</start-class>
 		<docker.image.prefix>numerify</docker.image.prefix>
 		<maven.compiler.source>1.8</maven.compiler.source>
 		<maven.compiler.target>1.8</maven.compiler.target>
