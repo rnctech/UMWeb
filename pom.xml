@@ -17,7 +17,7 @@
 		<jackson.version>2.8.4</jackson.version>
 		<junit.version>4.12</junit.version>
 		<quartz.version>2.2.3</quartz.version>
-		<mysql.version>5.1.38</mysql.version>
+		<mysql.version>8.0.16</mysql.version>
 		<commons-dbcp.version>1.4</commons-dbcp.version>
 		<start-class>com.rnctech.umweb.UMWebApplication</start-class>
 		<docker.image.prefix>numerify</docker.image.prefix>
