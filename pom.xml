@@ -16,7 +16,7 @@
 		<aspectj.version>1.8.8</aspectj.version>
 		<jackson.version>2.8.4</jackson.version>
 		<junit.version>4.12</junit.version>
-		<quartz.version>2.2.3</quartz.version>
+		<quartz.version>2.3.2</quartz.version>
 		<mysql.version>5.1.38</mysql.version>
 		<commons-dbcp.version>1.4</commons-dbcp.version>
 		<start-class>com.rnctech.umweb.UMWebApplication</start-class>
