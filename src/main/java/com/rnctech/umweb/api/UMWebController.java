@@ -5,10 +5,6 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.nio.file.Paths;
 import java.util.List;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
 import org.springframework.http.HttpStatus;
@@ -29,6 +25,7 @@ import com.rnctech.umweb.utils.UMWebUtils;
  */
 
 @RestController
+@RequestMapping(value = "/api/v1")
 public class UMWebController {
 
 	@Autowired

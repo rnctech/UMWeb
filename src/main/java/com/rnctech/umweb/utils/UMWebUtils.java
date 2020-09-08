@@ -31,15 +31,16 @@ public class UMWebUtils implements UMWebConsts {
 	private static final String RUNID_PREFIX = "RunIdentifier - ";
 	private static final String UM_SESSION_ID = "UM_SESSION_ID";
 	
-	// DataIngester-6.0.jar:pipelineutils-6.0-jar-with-dependencies.jar:PlatformUtil-6.0.jar:SourceHandler-6.0.jar:httpcore-4.4.4.jar:httpclient-4.4.1.jar:
-	//guava-20.0.jar:log4j-1.2.17.jar:org.apache.commons.codec-1.3.0.jar:cxf-bundle-2.7.5.jar:javax.ws.rs-api-2.0.1.jar:javax.ws.rs-api-2.0-m10.jar:neethi-3.0.2.jar:httpcore-nio-4.2.2.jar:httpasyncclient-4.0-beta3.jar:wsdl4j-1.6.3.jar:commons-io-2.4.jar;
-	public static void loadClass() throws Exception {
-			ClassLoader cl = new URLClassLoader(
-					new URL[] { new File("commons-codec-1.6.jar").toURL(), new File("httpcore-4.4.4.jar").toURL(), new File("httpclient-4.4.1.jar").toURL() },
-					Thread.currentThread().getContextClassLoader());
-			cl.loadClass("org.apache.commons.codec.binary.Base64");
-			cl.loadClass("org.apache.http.impl.auth.BasicScheme");
-			cl.loadClass("org.apache.http.impl.auth.BasicSchemeFactory");
+	//dynamically load class 
+	public static void loadClass(String[] jars, String[] clzz) throws Exception {
+			URL[] urls = new URL[jars.length];
+			for(int j=0;j<jars.length;j++) {
+				urls[j] = new File(jars[j]).toURI().toURL();
+			}
+			ClassLoader cl = new URLClassLoader(urls,Thread.currentThread().getContextClassLoader());
+			for(int i=0;i<clzz.length;i++) {
+				cl.loadClass(clzz[i]);
+			}
 	}
 		
 	public static String getUUID() {

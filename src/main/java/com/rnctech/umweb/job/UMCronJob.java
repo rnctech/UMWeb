@@ -2,7 +2,6 @@ package com.rnctech.umweb.job;
 
 import java.text.ParseException;
 
-import org.apache.log4j.Logger;
 import org.quartz.DisallowConcurrentExecution;
 import org.quartz.InterruptableJob;
 import org.quartz.Job;
@@ -10,7 +9,6 @@ import org.quartz.JobDataMap;
 import org.quartz.JobDetail;
 import org.quartz.JobExecutionContext;
 import org.quartz.JobExecutionException;
-import org.quartz.UnableToInterruptJobException;
 import org.springframework.scheduling.quartz.CronTriggerFactoryBean;
 import org.springframework.scheduling.quartz.JobDetailFactoryBean;
 
@@ -32,8 +30,6 @@ public class UMCronJob extends RNCTechJob {
 	
     private String jobexpr;
 	
-
-
 	@Override
 	public void execute(JobExecutionContext jobContext) throws JobExecutionException {
 		logger.info("Running Job With Trigger " + jobexpr);

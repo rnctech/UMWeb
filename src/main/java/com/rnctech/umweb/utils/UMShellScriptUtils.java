@@ -64,14 +64,18 @@ public class UMShellScriptUtils {
 		return executeCommand(pb, waitForResponse, logger);
 	}
 	
-	public static Object executeJava(UMJobData config,  boolean waitForResponse,
+	//jars classpath which seperate by : (such as "guava-20.0.jar:log4j-1.2.17.jar")
+	//mainClz -- class with main 
+	public static Object executeJava(UMJobData config, String jars, String mainClz, boolean waitForResponse,
 			Logger logger){
 	    ArrayList<String> cmd = new ArrayList<String>();
 	    cmd.add("java");
-	    cmd.add("-cp");
-	    cmd.add("httpcore-4.4.4.jar:httpclient-4.4.1.jar:guava-20.0.jar:log4j-1.2.17.jar");
+	    if(null != jars && !jars.isEmpty()) {
+	    	cmd.add("-cp");
+	    	cmd.add(jars);
+	    }
 	    cmd.add("-Dlog4j.configuration=file:log4j.properties");
-	    cmd.add("com.rnctech.cd.TestMain");
+	    cmd.add(mainClz);
 	    cmd.addAll(buildArgsList(config, logger));
 	    logger.info("build java command to run as:\n"+UMWebUtils.aTos(cmd.toArray(new String[cmd.size()])));
 	    ProcessBuilder pb = new ProcessBuilder(cmd.toArray(new String[cmd.size()]));	

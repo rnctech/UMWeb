@@ -30,11 +30,11 @@ public class UMWebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
             .authorizeRequests()
-                .antMatchers("/", "/role","/ping").permitAll()
+                .antMatchers("/api/v1/", "/api/v1/role","/api/v1/ping").permitAll()
                 .anyRequest().authenticated()
                 .and()
             .formLogin()
-                .loginPage("/login")
+                .loginPage("/api/v1/login")
                 .permitAll()
                 .and()
             .logout()

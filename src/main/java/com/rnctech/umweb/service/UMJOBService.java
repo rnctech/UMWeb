@@ -38,16 +38,16 @@ public class UMJOBService {
 	@Value("${quartz.enabled}")
 	boolean isSchedule;
 	
-	@Value("${com.ldb.um.schedule.type}")
+	@Value("${umweb.schedule.type}")
 	String scheduleType;
 	
-	@Value("${com.ldb.um.exec.type}")
+	@Value("${umweb.exec.type}")
 	String execType;
 	
-	@Value("${com.ldb.um.cron.jobtrigger}")
+	@Value("${umweb.cron.jobtrigger}")
 	private long frequency;
 	
-	@Value("${com.ldb.um.cron.jobexpression}")
+	@Value("${umweb.cron.jobexpression}")
     private String jobexpr;
 	
 	@Autowired
@@ -67,7 +67,7 @@ public class UMJOBService {
 			if(execType.equals("standalone")){
 				logger.info("run as "+ execType +" start @ "+new Date());
 				boolean waitProcessDone = true;
-				Object ret = UMShellScriptUtils.executeJava(jobdata, waitProcessDone, logger);
+				Object ret = UMShellScriptUtils.executeJava(jobdata, null, jobdata.getCommand().getName(), waitProcessDone, logger);
 				if(waitProcessDone && ret instanceof String){
 					tmap.remove(jobdata.getCommand().getName());
 					scheduled = (String)ret;
