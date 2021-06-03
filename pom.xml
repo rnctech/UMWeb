@@ -12,7 +12,7 @@
 		<java.version>1.8</java.version>
 		<spring.version>4.2.6.RELEASE</spring.version>
 		<spring.boot.version>1.3.5.RELEASE</spring.boot.version>
-		<httpcomponents.version>4.4.1</httpcomponents.version>
+		<httpcomponents.version>4.5.13</httpcomponents.version>
 		<aspectj.version>1.8.8</aspectj.version>
 		<jackson.version>2.8.4</jackson.version>
 		<junit.version>4.12</junit.version>
